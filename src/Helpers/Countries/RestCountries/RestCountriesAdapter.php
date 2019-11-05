@@ -2,10 +2,10 @@
 
 namespace App\Helpers\Countries\RestCountries;
 
-use App\Helpers\Countries\ICountries;
+use App\Helpers\Countries\ISample;
 use App\Helpers\Countries\RestCountries\RestCountriesService;
 
-class RestCountriesAdapter implements ICountries
+class RestCountriesAdapter implements ISample
 {
 	private $service;
 
@@ -17,10 +17,7 @@ class RestCountriesAdapter implements ICountries
 	public function getAll() : array
 	{
 		$countries_names = array();
-
-		$countries_json = $this->service->getCountries();
-		$countries = json_decode($countries_json);
-		
+		$countries = $this->service->getCountries();		
 		if (!empty($countries)) {
 		    $countries_names = array_column($countries, 'name');
 	    }

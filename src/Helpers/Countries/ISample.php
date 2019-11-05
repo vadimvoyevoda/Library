@@ -2,7 +2,7 @@
 
 namespace App\Helpers\Countries;
 
-interface ICountries
+interface ISample
 {
 	/**
 	 * @return ["name1", "name2", ...]
