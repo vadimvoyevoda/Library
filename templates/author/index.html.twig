@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Add New Author!{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Authors</h1>
+
+    <table class="table table-bordered books_table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Last Name</th>
+                <th>Country</th>                
+            </tr>
+        </thead>
+        <tbody>
+        {% if authors %}
+            {% for author in authors %}
+            <tr>
+                <td>{{ author.id }}</td>
+                <td>{{ author.name }}</td>
+                <td>{{ author.lastName }}</td>
+                <td>{{ author.country }}</td>                
+            </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}
