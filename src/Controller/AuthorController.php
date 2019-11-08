@@ -7,45 +7,98 @@ use App\Form\AuthorType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Knp\Component\Pager\PaginatorInterface;
 
 class AuthorController extends AbstractController
 {
+    private $perPage = 10;
+
     /**
-     * @Route("/dashboard/author/new", name="new_author")
+     * @Route("/dashboard/authors", name="authors")
+     */
+    public function index(Request $request, PaginatorInterface $paginator)
+    {
+    	$repository = $this->getDoctrine()->getRepository(Author::class);
+    	$allAuthors = $repository->findAll();
+
+        $authors = $paginator->paginate(
+            $allAuthors,
+            $request->query->getInt('page', 1),
+            $this->perPage
+        );
+
+    	return $this->render('author/index.html.twig', [
+            'authors' => $authors
+        ]);
+    }
+
+    /**
+     * @Route("/dashboard/authors/new", name="new_author")
      */
     public function new(Request $request)
     {
-    	$author = new Author();
-    	$form = $this->createForm(AuthorType::class, $author);
+        $author = new Author();
+        $form = $this->createForm(AuthorType::class, $author);
 
-    	$form->handleRequest($request);
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $author = $form->getData();
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($author);
             $entityManager->flush();
     
-            return $this->redirectToRoute('dashboard');
+            return $this->redirectToRoute('authors');
         }
 
         return $this->render('author/new.html.twig', [
-            'controller_name' => 'AuthorController',
             'form' => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/dashboard/authors", name="authors")
+     * @Route("/dashboard/authors/edit/{author_id}", name="edit_author")
      */
-    public function index()
+    public function edit(int $author_id, Request $request)
     {
-    	$repository = $this->getDoctrine()->getRepository(Author::class);
-    	$authors = $repository->findAll();
+        $entityManager = $this->getDoctrine()->getManager();
+        $author = $entityManager->getRepository(Author::class)->find($author_id);
 
-    	return $this->render('author/index.html.twig', [
-            'controller_name' => 'AuthorController',
-            'authors' => $authors
+        if (empty($author)) {
+            throw $this->notFoundException();
+        }
+
+        $form = $this->createForm(AuthorType::class, $author);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {            
+            $entityManager->flush();
+    
+            return $this->redirectToRoute('authors');
+        }
+
+        return $this->render('author/edit.html.twig', [
+            'form' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/dashboard/authors/delete/{author_id}", name="delete_author")
+     */
+    public function delete(int $author_id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $author = $entityManager->getRepository(Author::class)->find($author_id);
+        
+        if (empty($author)) {
+            throw $this->notFoundException();
+        }
+        
+        $entityManager->remove($author);
+        $entityManager->flush();
+    
+        return $this->redirectToRoute('authors');
     }
 }

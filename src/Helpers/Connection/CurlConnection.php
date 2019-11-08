@@ -5,7 +5,7 @@ namespace App\Helpers\Connection;
 use App\Helpers\Singleton;
 use App\Helpers\Connection\IConnection;
 
-class CurlConnectionService extends Singleton implements IConnection
+class CurlConnection extends Singleton implements IConnection
 {	
 	public function connect(string $url)
 	{

@@ -1,20 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello MainController!{% endblock %}
+{% block title %}Online Book Catalogue{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Online Book Catalogue</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/OSPanel/domains/localhost/library/src/Controller/MainController.php'|file_link(0) }}">src/Controller/MainController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/OSPanel/domains/localhost/library/templates/main/index.html.twig'|file_link(0) }}">templates/main/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="filters_row">
+        <form action="{{ path('home') }}" id="filters_form" name="filters_form" class="form-inline">
+            <div class="form-group">
+                <label for="filter_title">Title</label>
+                <input type="text" name="title" id="filter_title" class="form-control" placeholder="type title...">
+            </div>
+            <div class="form-group">
+                <label for="filter_author">Author</label>
+                <input type="text" name="author" id="filter_author" class="form-control" placeholder="type author...">
+            </div>
+            <div class="form-group">
+                <label for="filter_translation">Translation</label>
+                <input type="text" name="translation" id="filter_translation" class="form-control" placeholder="type translation...">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-info">Search</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="books_catalogue">
+    {{ include("/book/list.html.twig") }}
+    </div>
+
 {% endblock %}

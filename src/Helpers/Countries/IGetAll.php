@@ -2,7 +2,7 @@
 
 namespace App\Helpers\Countries;
 
-interface ISample
+interface IGetAll
 {
 	/**
 	 * @return ["name1", "name2", ...]

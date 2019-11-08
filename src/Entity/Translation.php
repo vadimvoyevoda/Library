@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TranslationRepository")
@@ -53,5 +54,10 @@ class Translation
         $this->language = $language;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->getLanguage();
     }
 }

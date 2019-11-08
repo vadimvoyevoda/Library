@@ -1,0 +1,50 @@
+/* Base */
+h1 {
+	margin: 1rem 0;
+}
+
+/* Header */
+header{
+	background-color: #343a40;
+}
+
+/* Navbar */
+.navbar{
+	padding:0;
+}
+.navbar-brand img {
+    max-width: 25px;
+}
+#navbarSupportedContent {
+    padding-top: 7px;
+}
+.navbar-dark .navbar-nav .nav-link{
+	color: #fff;
+}
+
+/* Filters */
+.filters_row{
+	margin-bottom: 20px;
+}
+
+.filters_row label {
+    margin-right: 5px;
+}
+
+.filters_row .form-group:not(:last-child){
+	margin-right: 15px;
+}
+
+/* Book */
+.book .title{
+	font-weight: bold;
+}
+
+.book .author{
+	font-style: italic;
+}
+
+/* Navigation */
+.navigation{
+	margin-top: 20px;
+}

@@ -1,0 +1,28 @@
+{% if books is not empty %}
+<ol class="books_list list-group">
+
+    {% for book in books %}
+    <li class="list-group-item book">
+        <span>{{ loop.index }}.</span>
+        <span class="title">{{ book.title }}</span>.
+        <span class="author">{{ book.author }}</span> - 
+        <span class="date">{{ book.publishDate | date("Y.m.d") }}</span>
+        
+        {% if book.translations is not empty %}
+        <span class="translations">
+        ({{ book.translations | join(',') }})
+        </span>
+        {% endif %}
+
+    </li>
+    {% endfor %}
+
+</ol>
+
+{% else %}
+No results found
+{% endif %}
+
+<div class="navigation">
+    {{ knp_pagination_render(books) }}
+</div>

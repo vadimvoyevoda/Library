@@ -20,13 +20,22 @@ class AuthorType extends AbstractType
         $countries = $countries_adapter->getAll();
 
         $builder
-            ->add('name', TextType::class)
-            ->add('last_name', TextType::class)
+            ->add('name', TextType::class, array( 
+                'attr' => array(
+                    'maxlength' => 40,                    
+                )
+            ))
+            ->add('last_name', TextType::class, array( 
+                'attr' => array(
+                    'maxlength' => 40,
+                )
+            ))
             ->add('country', ChoiceType::class, array(
                 'choices' => $countries,
                 'choice_label' => function ($choice, $key, $value) {
                     return $value;
                 },
+                'placeholder' => "... Please choose Country ...",        
             ))
             ->add('save', SubmitType::class)
         ;

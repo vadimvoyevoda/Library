@@ -35,7 +35,7 @@ class Book
     private $publish_date;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Translation", mappedBy="book")
+     * @ORM\OneToMany(targetEntity="App\Entity\Translation", mappedBy="book", cascade={"all"})
      */
     private $translations;
 
@@ -56,7 +56,7 @@ class Book
 
     public function setTitle(string $title): self
     {
-        $this->title = $title;
+        $this->title = ucfirst($title);
 
         return $this;
     }
@@ -115,4 +115,5 @@ class Book
 
         return $this;
     }
+
 }

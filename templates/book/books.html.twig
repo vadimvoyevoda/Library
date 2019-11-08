@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Online Book Catalogue{% endblock %}
+
+{% block body %}
+
+    <h1>Online Book Catalogue</h1>
+
+    {{ include("/book/filters.html.twig") }}
+
+    <div id="books_catalogue">
+    {{ include("/book/list.html.twig") }}
+    </div>
+
+{% endblock %}

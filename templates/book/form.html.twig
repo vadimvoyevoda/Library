@@ -1,0 +1,42 @@
+{{ form_start(form) }}
+    
+    {{ form_row(form.title) }}
+    {{ form_row(form.publish_date) }}
+    {{ form_row(form.author) }}
+
+    <div id="translations_list_container" 
+         class="form-group"
+         data-prototype="{{ form_widget(form.translations.vars.prototype)|e('html_attr') }}">
+        
+        <div class="card">
+            <div class="card-header">
+            Translations
+            </div>
+            <ul class="list list-group list-group-flush">
+
+                {% for row in form.translations %}
+                <li class="list-group-item translation-row">{{ form_row(row)}}</li>                
+                {% endfor %}
+
+            </ul>
+            <div class="card-body">
+                <button type="button" class="btn btn-info add_translation_btn">Add New</button>
+            </div>
+        </div>
+    </div>
+
+    {{ form_row(form._token) }}
+    {{ form_row(form.save) }}
+
+{{ form_end(form, {'render_rest': false}) }}
+
+<div class="mockups d-none">
+    {# mockup for remove translation btn #}
+    {# must have class "remove_translation_btn" #}
+    <button type="button" class="btn btn-danger remove_translation_btn">Remove</button>
+
+    {# mockup for new translation form #}
+    {# must have classes "translation-row-mockup" and "row-content" #}
+    {# form content will be inside element with this class #}
+    <li class="list-group-item translation-row-mockup"><fieldset class="form-group row-content"></fieldset></li>
+</div>

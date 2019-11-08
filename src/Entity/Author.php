@@ -55,7 +55,7 @@ class Author
 
     public function setName(string $name): self
     {
-        $this->name = $name;
+        $this->name = ucfirst($name);
 
         return $this;
     }
@@ -67,7 +67,7 @@ class Author
 
     public function setLastName(string $last_name): self
     {
-        $this->last_name = $last_name;
+        $this->last_name = ucfirst($last_name);
 
         return $this;
     }
@@ -82,6 +82,11 @@ class Author
         $this->country = $country;
 
         return $this;
+    }
+
+    public function __toString(): ?string
+    {
+        return $this->getName() . " " . $this->getLastName();
     }
 
     /**

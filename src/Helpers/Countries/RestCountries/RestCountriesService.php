@@ -2,7 +2,7 @@
 
 namespace App\Helpers\Countries\RestCountries;
 
-use App\Helpers\Connection\CurlConnectionService;
+use App\Helpers\Connection\ConnectionService;
 
 class RestCountriesService
 {
@@ -12,7 +12,7 @@ class RestCountriesService
 
     public function getCountries()
     {
-        $connection_service = CurlConnectionService::getInstance();
+        $connection_service = ConnectionService::getConnectionService("curl");
     	$countries_json = $connection_service->connect(self::BASEURL . self::ALL_COUNTRIES_NAMES_ENDPOINT);
         $countries = json_decode($countries_json);
 
@@ -24,7 +24,7 @@ class RestCountriesService
 
     public function getLanguages()
     {
-        $connection_service = CurlConnectionService::getInstance();
+        $connection_service = ConnectionService::getConnectionService("curl");
         $countries_languages_json = $connection_service->connect(self::BASEURL . self::ALL_COUNTRIES_LANGUAGES_ENDPOINT);
         $countries_languages = json_decode($countries_languages_json);
 

@@ -7,7 +7,7 @@
         <link rel="shortcut icon" href="{{ asset('assets/favicon.png') }}" type="image/png">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/dashboard/dashboard_styles.css') }}">
         {% endblock %}
     </head>
     <body>
@@ -15,31 +15,34 @@
     		<div class="container">
                 <div class="row">
                     <div class="col-md-12">
-    		            <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-                            <a class="navbar-brand mb-0 h1" href="{{ path('home') }}">
-                                <img src="{{ asset('assets/favicon.png') }}" class="d-inline-block align-top" alt="">
-                                Book Catalogue
-                            </a>
+    		            <nav class="navbar navbar-expand-lg navbar-light">
+                            <a class="navbar-brand" href="{{ path('dashboard') }}">Dashboard</a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
 
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav ml-auto">
-                                
-                                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                                <ul class="navbar-nav mr-auto">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ path('dashboard') }}">Dashboard</a>
+                                        <a class="nav-link" href="{{ path('home') }}">Home</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="authorsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Authors</a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ path('authors') }}">All authors</a>
+                                            <a class="dropdown-item" href="{{ path('new_author') }}">Add New author</a>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="booksDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Books</a>
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ path('books') }}">All books</a>
+                                            <a class="dropdown-item" href="{{ path('new_book') }}">Add New book</a>
+                                        </div>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ path('app_logout') }}"><i class="fa fa-sign-out"></i>Logout</a>
+                                        <a class="nav-link" href="{{ path('app_logout') }}">Logout</a>
                                     </li>
-                                {% else %}
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ path('app_login') }}">Login</a>
-                                    </li>
-                                {% endif %}
-
                                 </ul>
                             </div>
                         </nav>
@@ -71,7 +74,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
                 crossorigin="anonymous"></script>
-        <script src="{{ asset('assets/js/script.js') }}"></script>
+        <script src="{{ asset('assets/js/dashboard/dashboard_script.js') }}"></script>
         {% endblock %}
     </body>
 </html>

@@ -1,0 +1,36 @@
+header{
+	background-color: #f5f5f5;
+	margin-bottom: 15px;
+}
+.translation-row fieldset{
+	margin-bottom: 0;
+	margin-right: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+.translation-row fieldset label {
+	display: none;
+}
+.inline_row > * {
+	display: inline-block;
+	vertical-align: middle;
+}
+#search_form{
+	float:right;
+	margin-top: 10px;
+}
+#search_form input{
+	margin: 0 10px;
+}
+.card-img{
+	width:35%;
+	margin-right: 5%;
+}
+.card-content{
+	width: 60%;
+}
+.card-img, .card-content {
+	float: left;
+	display: inline-block;
+    vertical-align: top;
+}

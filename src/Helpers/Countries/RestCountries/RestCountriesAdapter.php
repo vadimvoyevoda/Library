@@ -2,10 +2,10 @@
 
 namespace App\Helpers\Countries\RestCountries;
 
-use App\Helpers\Countries\ISample;
+use App\Helpers\Countries\IGetAll;
 use App\Helpers\Countries\RestCountries\RestCountriesService;
 
-class RestCountriesAdapter implements ISample
+class RestCountriesAdapter implements IGetAll
 {
 	private $service;
 
