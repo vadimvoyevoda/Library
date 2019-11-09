@@ -3,15 +3,12 @@
 namespace App\Form;
 
 use App\Entity\Translation;
-use App\Entity\Book;
 use App\Helpers\Countries\RestCountries\RestCountriesService;
 use App\Helpers\Countries\RestCountries\RestCountriesLanguagesAdapter;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class TranslationType extends AbstractType
 {

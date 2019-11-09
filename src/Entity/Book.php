@@ -85,6 +85,11 @@ class Book
         return $this;
     }
 
+    public function __toString() : string
+    {
+        return $this->getTitle() . " - " . $this->getAuthor();
+    }
+
     /**
      * @return Collection|Translation[]
      */
@@ -95,7 +100,16 @@ class Book
 
     public function addTranslation(Translation $translation): self
     {
-        if (!$this->translations->contains($translation)) {
+        // check if this translation language is unique for current book
+        $existingTranslation = false;
+        foreach ($this->translations as $bookTranslation) {
+            if ($bookTranslation->getLanguage() == $translation->getLanguage()) {
+                $existingTranslation = true;
+                break;
+            }
+        }
+
+        if (!$existingTranslation) {
             $this->translations[] = $translation;
             $translation->setBook($this);
         }

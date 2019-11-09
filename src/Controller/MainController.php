@@ -8,8 +8,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
 
-use App\Helpers\Data\BooksParser;
-
 class MainController extends AbstractController
 {
 	/**
@@ -17,9 +15,6 @@ class MainController extends AbstractController
      */
     public function index(BookController $bookController, Request $request, PaginatorInterface $paginator)
     {	
-    	// $bookParser = new BooksParser($this->getDoctrine()->getManager());
-        // $books = $bookParser->saveBooks();
-
-        return $bookController->filter($request, $paginator);
+    	return $bookController->filter($request, $paginator);
     }
 }

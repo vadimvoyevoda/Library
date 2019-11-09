@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ author }}{% endblock %}
+
+{% block body %}
+
+<div class="author_row">
+    <h1>{{ author }}</h1> 
+    <div class="country">({{ author.country }})</div>
+</div>
+
+<div>Books:</div>
+
+{{ include('book/list.html.twig') }}
+
+{% endblock %}

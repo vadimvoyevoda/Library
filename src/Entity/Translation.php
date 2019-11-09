@@ -7,6 +7,10 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TranslationRepository")
+ * @UniqueEntity(
+ *     fields={"book", "language"},
+ *     message="This translation is already in use for that book."
+ * )
  */
 class Translation
 {

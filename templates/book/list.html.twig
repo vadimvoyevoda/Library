@@ -5,7 +5,11 @@
     <li class="list-group-item book">
         <span>{{ loop.index }}.</span>
         <span class="title">{{ book.title }}</span>.
-        <span class="author">{{ book.author }}</span> - 
+        <span class="author">
+            <a href="{{ path('author', {'author_id' : book.author.id}) }}">
+                {{ book.author }}
+            </a>
+        </span> - 
         <span class="date">{{ book.publishDate | date("Y.m.d") }}</span>
         
         {% if book.translations is not empty %}

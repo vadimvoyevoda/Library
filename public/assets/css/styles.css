@@ -48,3 +48,12 @@ header{
 .navigation{
 	margin-top: 20px;
 }
+
+/* Author */
+.author_row > *{
+	display: inline-block;
+}
+
+.author_row .country {
+    font-size: 2rem;
+}

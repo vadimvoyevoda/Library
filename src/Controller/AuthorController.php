@@ -14,6 +14,11 @@ class AuthorController extends AbstractController
 {
     private $perPage = 10;
 
+    public function getPerPage()
+    {
+        return $this->perPage;
+    }
+
     /**
      * @Route("/dashboard/authors", name="authors")
      */
@@ -100,5 +105,26 @@ class AuthorController extends AbstractController
         $entityManager->flush();
     
         return $this->redirectToRoute('authors');
+    }
+
+    /**
+     * @Route("/author/{author_id}", name="author")
+     */
+    public function author(int $author_id, Request $request, PaginatorInterface $paginator, BookController $bookController)
+    {
+        $repository = $this->getDoctrine()->getRepository(Author::class);
+        $author = $repository->find($author_id);
+
+        $books = $paginator->paginate(
+            $author->getBooks(),
+            $request->query->getInt('page', 1),
+            $bookController->getPerPage()
+        );
+
+        return $this->render('author/author.html.twig', [
+            'author' => $author,
+            'books'  => $books
+
+        ]);
     }
 }

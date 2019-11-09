@@ -15,6 +15,11 @@ class BookController extends AbstractController
 {
     private $perPage = 10;
 
+    public function getPerPage()
+    {
+        return $this->perPage;
+    }
+
     /**
      * @Route("/dashboard/books", name="books")
      */
@@ -69,7 +74,7 @@ class BookController extends AbstractController
     	if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-    		// return $this->redirectToRoute('books');
+    		return $this->redirectToRoute('books');
     	}
 
     	return $this->render('book/edit.html.twig', [
