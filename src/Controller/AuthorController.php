@@ -24,8 +24,10 @@ class AuthorController extends AbstractController
      */
     public function index(Request $request, PaginatorInterface $paginator)
     {
+        $name = $request->query->get("name");
+
     	$repository = $this->getDoctrine()->getRepository(Author::class);
-    	$allAuthors = $repository->findAll();
+    	$allAuthors = $repository->findAll($name);
 
         $authors = $paginator->paginate(
             $allAuthors,

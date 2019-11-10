@@ -19,27 +19,30 @@ class AuthorRepository extends ServiceEntityRepository
         parent::__construct($registry, Author::class);
     }
 
-    public function findAll()
+    public function findAll($name = "")
     {
+        if (!empty($name)) {
+            return $this->findByName($name);
+        }
+
         return $this->findBy(array(), array('name' => 'ASC'));
     }
 
     // /**
-    //  * @return Author[] Returns an array of Author objects
+    //  * @return Author[] Returns an array of Author objects filtered by Name or Last Name
     //  */
-    /*
-    public function findByExampleField($value)
+    public function findByName(string $name = "")
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            ->orWhere('a.name LIKE :name')
+            ->orWhere('a.last_name LIKE :name')
+            ->setParameter('name', "%" . $name . "%")
+            ->orderBy('a.name', 'ASC')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Author

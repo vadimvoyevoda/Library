@@ -82,22 +82,6 @@ class BookController extends AbstractController
     	]);
     }
 
-    // private function setUniqueTranslations(Book $book)
-    // {
-    //     $uniqueTranslations = new ArrayCollection();
-
-    //     $translations = $book->getTranslations();
-    //     foreach ($translations as $key => $translation) {
-    //         if ($uniqueTranslations->contains($translation->getLanguage())) {
-    //             $book->removeTranslation($translation);
-    //         } else {
-    //             $uniqueTranslations->add($translation->getLanguage());
-    //         }
-    //     }
-
-    //     return $book;
-    // }
-
     /**
      * @Route("/dashboard/books/delete/{book_id}", name="delete_book")
      */
